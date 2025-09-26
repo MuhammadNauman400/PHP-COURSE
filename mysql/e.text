@@ -1,0 +1,23 @@
+WHAT IS THE PURPOSE OF E FUNCTION
+
+
+ The e() function is a helper function for escaping output before displaying it in HTML.
+htmlspecialchars() converts special characters into HTML entities.
+For example:
+
+< becomes &lt;
+
+> becomes &gt;
+
+" becomes &quot;
+
+' becomes &#039;
+
+ENT_QUOTES ensures that both single (') and double (") quotes are escaped.
+
+UTF-8 specifies the character encoding, which prevents issues with special characters.
+
+✅ Why use it?
+This prevents Cross-Site Scripting (XSS) attacks.
+If someone inserts HTML/JavaScript into your database (e.g., <script>alert("Hacked!")</script>), calling e($result['title']) ensures
+it will be shown as text in the browser, not executed as code.

@@ -1,0 +1,28 @@
+<?php
+
+function e($value ){
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+$pdo = new PDO('mysql:host=localhost;dbname=note_app', 'root', '',[
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+]);
+
+// Queries
+// $stmt = $pdo->prepare('SELECT * FROM `notes`');
+// $stmt = $pdo->prepare('SELECT * FROM `notes` ORDER BY `title` ASC');
+$stmt = $pdo->prepare('SELECT `id`, `title` FROM `notes` ORDER BY `title` ASC');
+$stmt->execute();
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+var_dump($results);
+
+?>
+
+<ul>
+    <?php foreach($results as $result): ?>
+
+        <li><?php echo e($result['title']); ?></li>
+        <!-- <?php echo e($result['content']); ?> -->
+        <?php endforeach; ?>
+</ul>
+
